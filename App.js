@@ -7,10 +7,11 @@ import { config } from '@gluestack-ui/config';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-// 1. Importa tus tres pantallas
+// 1. Importa tus pantallas (¡Añadimos CardScreen!)
 import HomeScreen from './screens/HomeScreen';
 import FormsScreen from './screens/FormsScreen';
-import ProfileScreen from './screens/ProfileScreen'; // Pantalla de la Práctica 3.2
+import ProfileScreen from './screens/ProfileScreen';
+import CardScreen from './screens/CardScreen'; // <-- NUEVA PANTALLA
 
 // 2. Crea el navegador
 const Drawer = createDrawerNavigator();
@@ -18,21 +19,18 @@ const Drawer = createDrawerNavigator();
 // 3. Define el "menú" con tus pantallas
 function RootNavigator() {
     return (
-        // 2. RUTA INICIAL es "Home" (tu pantalla principal)
         <Drawer.Navigator initialRouteName="Home">
+            
             {/* 3. PANTALLA "HOME" (Principal) */}
             <Drawer.Screen
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    // 4. TU NOMBRE (como pide la práctica 3.2, Fig 1)
                     title: 'Luna Rojas Casandra',
                     headerStyle: {
-                        // 5. APLICAR TU COLOR LILA
                         backgroundColor: '#b373ddff',
                     },
-                    headerTintColor: '#ffffff', // Color del texto blanco
-                    // 6. Oculta "Home" del menú (como en tu App.js original)
+                    headerTintColor: '#ffffff', 
                     drawerItemStyle: { display: 'none' }
                 }}
             />
@@ -42,9 +40,8 @@ function RootNavigator() {
                 name="Forms"
                 component={FormsScreen}
                 options={{
-                    title: 'Forms', // (Como en la Fig. 2 de la práctica)
+                    title: 'Forms',
                     headerStyle: {
-                        // 5. APLICAR TU COLOR LILA
                         backgroundColor: '#b373ddff',
                     },
                     headerTintColor: '#ffffff',
@@ -56,14 +53,27 @@ function RootNavigator() {
                 name="Profile"
                 component={ProfileScreen}
                 options={{
-                    title: 'Profile', // (Como en la Fig. 2 de la práctica)
+                    title: 'Profile', 
                     headerStyle: {
-                        // 5. APLICAR TU COLOR LILA
                         backgroundColor: '#b373ddff',
                     },
                     headerTintColor: '#ffffff',
                 }}
             />
+            
+            {/* 9. PANTALLA "CARD" (¡NUEVA!) */}
+            <Drawer.Screen
+                name="Card" // Nombre de la ruta
+                component={CardScreen}
+                options={{
+                    title: 'Cards', // Título en el menú y cabecera
+                    headerStyle: {
+                        backgroundColor: '#b373ddff', // Tu color lila
+                    },
+                    headerTintColor: '#ffffff', // Texto blanco
+                }}
+            />
+
         </Drawer.Navigator>
     );
 }

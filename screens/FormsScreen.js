@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import {
   Box,
   Heading,
+  Text,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
@@ -40,11 +41,25 @@ import {
   VStack,
 } from '@gluestack-ui/themed';
 
-// (d) Componente importado y creado por mi
+// 🌷 Título decorativo
 const TituloPractica = ({ titulo, subtitulo }) => (
-  <Box mb="$4" alignItems="center">
-    <Heading size="lg">{titulo}</Heading>
-    <Text style={{ fontSize: 16, color: '#666' }}>{subtitulo}</Text>
+  <Box mb="$5" alignItems="center">
+    <Heading
+      size="lg"
+      style={{
+        color: '#E75480',
+        fontWeight: '700',
+        letterSpacing: 0.5,
+        textShadowColor: 'rgba(231, 84, 128, 0.25)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
+      }}
+    >
+      {titulo}
+    </Heading>
+    <Text style={{ fontSize: 16, color: '#8B6D75', marginTop: 4 }}>
+      {subtitulo}
+    </Text>
   </Box>
 );
 
@@ -64,35 +79,38 @@ export default function FormsScreen({ navigation }) {
     }
   }, [isSliderActive, navigation]);
 
+  // 🌸 Estilo de tarjetas suaves
   const cardStyles = {
-    bg: "$white",
-    p: "$4",
-    mb: "$4",
-    borderRadius: "$xl",
-    shadowColor: "$black",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
+    bg: '#fff0f5',
+    p: '$5',
+    mb: '$5',
+    borderRadius: 20,
+    shadowColor: '#E75480',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
     shadowRadius: 6,
-    elevation: 8,
-    
+    elevation: 6,
+    borderWidth: 1,
+    borderColor: '#fbc4d3',
   };
 
   return (
     <ScrollView
       scrollEnabled={!isSliderActive}
       contentContainerStyle={{ paddingBottom: 50 }}
-      canCancelContentTouches={!isSliderActive}
+      style={{ flex: 1, backgroundColor: '#fffafc' }}
     >
-      {/* (a) Pantalla dentro del Drawer Navigation con nombre en barra */}
-      <Box flex={1} bg="$backgroundLight50" p="$4">
+      <Box flex={1} p="$5" alignItems="center">
         <TituloPractica
-          titulo="Gluestack Forms"
-          subtitulo="Práctica del Tema 3: Componentes"
+          titulo="✨ Gluestack Forms ✨"
+          subtitulo="Componentes de Gluestack."
         />
 
-        {/* (Tabla) Checkbox individual */}
-        <Box {...cardStyles} mt="$4">
-          <Heading size="md" mb="$2">Checkbox</Heading>
+        {/* Checkbox individual */}
+        <Box {...cardStyles} width="100%">
+          <Heading size="md" mb="$2" color="#C94F7C">
+            Checkbox
+          </Heading>
           <Checkbox
             value="single"
             aria-label="Checkbox"
@@ -103,103 +121,105 @@ export default function FormsScreen({ navigation }) {
             <CheckboxIndicator mr="$2">
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
-            <Text>Opción 1</Text>
+            <Text color="#6B5E62">Opción 1</Text>
           </Checkbox>
         </Box>
 
-        {/* (Tabla) CheckboxGroup */}
-        <Box {...cardStyles}>
-          <Heading size="md" mb="$2">CheckboxGroup</Heading>
+        {/* CheckboxGroup */}
+        <Box {...cardStyles} width="100%">
+          <Heading size="md" mb="$2" color="#C94F7C">
+            CheckboxGroup
+          </Heading>
           <CheckboxGroup value={checkboxValues} onChange={setCheckboxValues}>
-            <Checkbox value="opcion1" aria-label="Checkbox 1" mt="$2">
-              <CheckboxIndicator mr="$2">
-                <CheckboxIcon as={CheckIcon} />
-              </CheckboxIndicator>
-              <Text>Opción 1</Text>
-            </Checkbox>
-            <Checkbox value="opcion2" aria-label="Checkbox 2" mt="$2">
-              <CheckboxIndicator mr="$2">
-                <CheckboxIcon as={CheckIcon} />
-              </CheckboxIndicator>
-              <Text>Opción 2</Text>
-            </Checkbox>
-            <Checkbox value="opcion3" aria-label="Checkbox 3" mt="$2">
-              <CheckboxIndicator mr="$2">
-                <CheckboxIcon as={CheckIcon} />
-              </CheckboxIndicator>
-              <Text>Opción 3</Text>
-            </Checkbox>
+            {['Opción 1', 'Opción 2', 'Opción 3'].map((op, i) => (
+              <Checkbox value={`opcion${i + 1}`} key={op} mt="$2">
+                <CheckboxIndicator mr="$2">
+                  <CheckboxIcon as={CheckIcon} />
+                </CheckboxIndicator>
+                <Text color="#6B5E62">{op}</Text>
+              </Checkbox>
+            ))}
           </CheckboxGroup>
         </Box>
 
-        {/* (Tabla) Link + Icon */}
-        <Box {...cardStyles}>
-          <Heading size="md" mb="$2">Link con Icono</Heading>
+        {/* Link */}
+        <Box {...cardStyles} width="100%">
+          <Heading size="md" mb="$2" color="#C94F7C">
+            Link con Icono
+          </Heading>
           <Link
             href="https://youtu.be/rh9MQEXC9GQ?si=XKfmFNJY761VZHuB"
-            mt="$2"
             flexDirection="row"
             alignItems="center"
           >
-            <Icon as={LinkIcon} size="sm" mr="$1" />
-            <LinkText>Link a Youtube: Sade - Smooth Operator</LinkText>
+            <Icon as={LinkIcon} size="sm" mr="$1" color="#E75480" />
+            <LinkText color="#E75480">
+              Sade - Smooth Operator 🎶
+            </LinkText>
           </Link>
         </Box>
 
-        {/* (Tabla) Pressable con cambio de color */}
-        <Box {...cardStyles}>
-          <Heading size="md" mb="$2">Pressable</Heading>
+        {/* Pressable */}
+        <Box {...cardStyles} width="100%">
+          <Heading size="md" mb="$2" color="#C94F7C">
+            Pressable
+          </Heading>
           <Pressable
             onPressIn={() => setIsPressed(true)}
             onPressOut={() => setIsPressed(false)}
-            mt="$2"
           >
-            <Text style={{ color: isPressed ? '#3b82f6' : '#000', fontSize: 16 }}>
-              ⮕ HAZ CLIC AQUÍ
+            <Text
+              style={{
+                color: isPressed ? '#E75480' : '#333',
+                fontSize: 16,
+                textAlign: 'center',
+              }}
+            >
+              ⮕ ¡Haz clic aquí!
             </Text>
           </Pressable>
         </Box>
 
-        {/* (Tabla) Radio + RadioGroup + FormControl */}
-        <FormControl {...cardStyles}>
+        {/* RadioGroup */}
+        <FormControl {...cardStyles} width="100%">
           <FormControlLabel mb="$2">
             <FormControlLabelText>
-              <Text style={{ fontWeight: 'bold', fontSize: 16 }}>RadioGroup (FormControl)</Text>
+              <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#C94F7C' }}>
+                RadioGroup (FormControl)
+              </Text>
             </FormControlLabelText>
           </FormControlLabel>
           <RadioGroup value={radioValue} onChange={setRadioValue}>
             <VStack space="md">
-              <Radio value="opcion1">
-                <RadioIndicator mr="$2">
-                  <RadioIcon as={CircleIcon} />
-                </RadioIndicator>
-                <RadioLabel>Opción 1</RadioLabel>
-              </Radio>
-              <Radio value="opcion2">
-                <RadioIndicator mr="$2">
-                  <RadioIcon as={CircleIcon} />
-                </RadioIndicator>
-                <RadioLabel>Opción 2</RadioLabel>
-              </Radio>
+              {['Opción 1', 'Opción 2'].map((op, i) => (
+                <Radio key={op} value={`opcion${i + 1}`}>
+                  <RadioIndicator mr="$2">
+                    <RadioIcon as={CircleIcon} color="#E75480" />
+                  </RadioIndicator>
+                  <RadioLabel color="#6B5E62">{op}</RadioLabel>
+                </Radio>
+              ))}
             </VStack>
           </RadioGroup>
         </FormControl>
 
-        {/* (Tabla) Select controlado */}
-        <FormControl {...cardStyles}>
+        {/* Select */}
+        <FormControl {...cardStyles} width="100%">
           <FormControlLabel mb="$2">
             <FormControlLabelText>
-              <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Select</Text>
+              <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#C94F7C' }}>
+                Select
+              </Text>
             </FormControlLabelText>
           </FormControlLabel>
           <Select selectedValue={selectValue} onValueChange={setSelectValue}>
-            <SelectTrigger>
-              <SelectInput placeholder="Elige una opción" />
+            <SelectTrigger bg="#ffe4ec">
+              <SelectInput placeholder="Elige una opción" color="#6B5E62" />
               <SelectIcon as={ChevronDownIcon} mr="$3" />
             </SelectTrigger>
             <SelectPortal>
               <SelectBackdrop />
-              <SelectContent>
+              <SelectContent bg="#fff0f5">
                 <SelectDragIndicatorWrapper>
                   <SelectDragIndicator />
                 </SelectDragIndicatorWrapper>
@@ -211,11 +231,13 @@ export default function FormsScreen({ navigation }) {
           </Select>
         </FormControl>
 
-        {/* (Tabla) Slider con valores min y max */}
-        <FormControl {...cardStyles}>
+        {/* Slider */}
+        <FormControl {...cardStyles} width="100%">
           <FormControlLabel mb="$2">
             <FormControlLabelText>
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Slider (Valor: {Math.round(sliderValue)})</Text>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#C94F7C' }}>
+                Slider (Valor: {Math.round(sliderValue)})
+              </Text>
             </FormControlLabelText>
           </FormControlLabel>
           <Slider
@@ -227,40 +249,42 @@ export default function FormsScreen({ navigation }) {
             onValueChange={setSliderValue}
             onSlidingStart={() => setIsSliderActive(true)}
             onSlidingComplete={() => setIsSliderActive(false)}
-            minimumTrackTintColor="#3b82f6"
-            maximumTrackTintColor="#B0BEC5"
-            thumbTintColor="#3b82f6"
+            minimumTrackTintColor="#E75480"
+            maximumTrackTintColor="#F5C6D0"
+            thumbTintColor="#E75480"
           />
         </FormControl>
 
-        {/* (Tabla) Switch con estado */}
-        <FormControl {...cardStyles}>
+        {/* Switch */}
+        <FormControl {...cardStyles} width="100%">
           <FormControlLabel>
             <FormControlLabelText>
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Switch (Estado: {switchValue ? 'On' : 'Off'})</Text>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#C94F7C' }}>
+                Switch (Estado: {switchValue ? 'On' : 'Off'})
+              </Text>
             </FormControlLabelText>
           </FormControlLabel>
           <Switch
             onValueChange={setSwitchValue}
             isChecked={switchValue}
             alignSelf="flex-start"
-            mt="$1"
+            mt="$2"
           />
         </FormControl>
 
-        {/* (Tabla) TextArea con FormControl */}
-        <FormControl {...cardStyles}>
+        {/* TextArea */}
+        <FormControl {...cardStyles} width="100%">
           <FormControlLabel>
             <FormControlLabelText>
-              <Text style={{ fontWeight: 'bold', fontSize: 16 }}>TextArea</Text>
+              <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#C94F7C' }}>
+                TextArea
+              </Text>
             </FormControlLabelText>
           </FormControlLabel>
-          <Textarea>
-            <TextareaInput placeholder="Escribe tus comentarios aquí..." />
+          <Textarea bg="#ffe4ec" borderColor="#fbc4d3">
+            <TextareaInput placeholder="Escribe tus comentarios aquí..." color="#6B5E62" />
           </Textarea>
         </FormControl>
-
-        {/* (f) Competencias alcanzadas: abstracción, creatividad, comunicación, aplicación práctica */}
       </Box>
     </ScrollView>
   );
