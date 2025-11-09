@@ -1,4 +1,4 @@
-// ¡Importante! Esta línea DEBE estar al inicio
+
 import 'react-native-gesture-handler';
 
 import React from 'react';
@@ -7,11 +7,10 @@ import { config } from '@gluestack-ui/config';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-// 1. Importa tus pantallas (¡Añadimos CardScreen!)
 import HomeScreen from './screens/HomeScreen';
 import FormsScreen from './screens/FormsScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import CardScreen from './screens/CardScreen'; // <-- NUEVA PANTALLA
+import DisplayScreen from './screens/DisplayScreen'; // <-- NUEVA PANTALLA
 
 // 2. Crea el navegador
 const Drawer = createDrawerNavigator();
@@ -63,10 +62,10 @@ function RootNavigator() {
             
             {/* 9. PANTALLA "CARD" (¡NUEVA!) */}
             <Drawer.Screen
-                name="Card" // Nombre de la ruta
-                component={CardScreen}
+                name="Display" // Nombre de la ruta
+                component={DisplayScreen}
                 options={{
-                    title: 'Cards', // Título en el menú y cabecera
+                    title: 'Display', // Título en el menú y cabecera
                     headerStyle: {
                         backgroundColor: '#b373ddff', // Tu color lila
                     },
